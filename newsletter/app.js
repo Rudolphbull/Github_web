@@ -36,7 +36,7 @@ app.post("/", function(req, res){
     const url = "https://us10.api.mailchimp.com/3.0/lists/5eff3f017b";
     const options = {
         method: "POST",
-        auth: "gma_tutorial:f5c25d22939efa4a1f8b33e2dd5cc5f9-us10"
+        auth: "gma_tutorial:process.env.MAILCHIMP_API_KEY"
     }
 
     const request = https.request(url, options, function(response){
@@ -86,6 +86,3 @@ app.listen(process.env.PORT || 4000, function(){
 });
 
 
-
-// API Key
-// f5c25d22939efa4a1f8b33e2dd5cc5f9-us10
