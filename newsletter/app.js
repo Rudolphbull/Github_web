@@ -55,7 +55,7 @@ app.post("/", function(req, res){
                 if (response.statusCode === 200) {
                     res.sendFile(__dirname + "/success.html");
                 } else{
-                    res.sendFile(__dirname + "failure.html");
+                    res.sendFile(__dirname + "/failure.html");
                 }
             } catch(error){
                 console.error("Failed to parse Mailchimp response: ", error);
@@ -72,7 +72,7 @@ app.post("/", function(req, res){
     
 });
 
-app.listen(4000, function(){
+app.listen(process.env.PORT || 4000, function(){
     console.log("Newsletter Signup Server started at port 4000!!!");
 });
 
