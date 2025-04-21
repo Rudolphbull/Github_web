@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("https");
@@ -36,7 +37,7 @@ app.post("/", function(req, res){
     const url = "https://us10.api.mailchimp.com/3.0/lists/5eff3f017b";
     const options = {
         method: "POST",
-        auth: "gma_tutorial:process.env.MAILCHIMP_API_KEY"
+        auth: "gma_tutorial:" + process.env.MAILCHIMP_API_KEY
     }
 
     const request = https.request(url, options, function(response){
