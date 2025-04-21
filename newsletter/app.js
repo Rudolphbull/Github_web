@@ -50,13 +50,22 @@ app.post("/", function(req, res){
         response.on("end", function(){
             try{
                 const parseData = JSON.parse(responseData);
-                console.log("Mailchimp response: " + parseData);
+                console.log("Status Code:", response.statusCode);
+                console.log("Mailchimp response:", parseData);
 
                 if (response.statusCode === 200) {
-                    res.sendFile(__dirname + "/success.html");
-                } else{
+                    const parsed = JSON.parse(responseData);
+                    if (parsed.error_count === 0) {
+                        res.sendFile(__dirname + "/success.html");
+                    } else {
+                        console.error("Mailchimp errors:", parsed.errors);
+                        res.sendFile(__dirname + "/failure.html");
+                    }
+                } else {
+                    console.error("Non-200 status:", response.statusCode);
                     res.sendFile(__dirname + "/failure.html");
                 }
+                
             } catch(error){
                 console.error("Failed to parse Mailchimp response: ", error);
                 console.error("Raw response: ", responseData);
