@@ -41,3 +41,9 @@ body {
     border-top-right-radius: 0;
     margin-bottom: 10px;
 }
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
