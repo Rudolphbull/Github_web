@@ -1,0 +1,303 @@
+<!-- WhatsApp Chat Button -->
+<a href="https://wa.me/2349063774018" class="whatsapp_float" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat with us on WhatsApp" />
+</a>
+
+<style>
+  .whatsapp_float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  .whatsapp_float img {
+    width: 100%;
+    height: auto;
+  }
+</style>
+
+<!-- Arial Labels -->
+<span class="icon solid major fa-network-wired" aria-label="Network Installations LAN/WAN"></span>
+
+
+<!-- Updated Icon Suggestions -->
+<section>
+    <span class="icon solid major fa-network-wired"></span> <!-- For LAN/WAN -->
+    <h3>Network Installations LAN/WAN</h3>
+    <p>Are you looking at converting one of house(s) into an office? Be rest assured we can help you implement top notch network infrastructuring designs with regards to implementing the LAN/WAN to best suit purpose. Reach out to us for quality assurance.</p>
+</section>
+
+<section>
+    <span class="icon solid major fa-video-camera"></span> <!-- For CCTV -->
+    <h3>CCTV Installations</h3>
+    <p>Securing properties and lives of your employees should be prioritized with real-time monitoring, whether you are in the office or not in the office, and this can be best achieved by deploying CCTV Camera's with remote view. Surely, it is one of the services we provide efficiently with effectiveness.</p>
+</section>
+
+<section>
+    <span class="icon solid major fa-phone-alt"></span> <!-- For VOIP -->
+    <h3>VOIP Installations / Intercomm</h3>
+    <p>One of the key reasons of having an intercomm in the office is to reduce the walking rate around the office premises by members of Staff. By ensuring you have a phone in the office, you have succeeded in maximizing members of your staff's productivity by conserving their energy. Be it Voice Over IP phones along with a base station, or just the normal voice data phone, we have got you covered.</p>
+</section>
+
+<section>
+    <span class="icon solid major fa-server"></span> <!-- For ITMS -->
+    <h3>ITMS (IT Management Service)</h3>
+    <p>To all SMEs with adequate amount of members of staff using computer devices without an IT department, be rest assured we can help you provide the necessary IT support needed to add value to your organisation.</p>
+</section>
+
+<section>
+    <span class="icon solid major fa-laptop"></span> <!-- For Laptop/Desktop Sales -->
+    <h3>Laptop and Desktop Sales / Computer Accessories</h3>
+    <p>We are here to help you get the Laptop, Desktop, or Computer Accessories of your choice. This is for those that understand the essence of getting value for their money. As this is guaranteed at GMA Technologies.</p>
+</section>
+
+<section>
+    <span class="icon major fa-cogs"></span> <!-- For Software Development -->
+    <h3>Software Development / Software Testing / Website Development</h3>
+    <p>Building your dream business starts with carrying the vision inside of you. Let us be a part of your success story, from building your application, to testing, and finally helping you build, host, and manage your website. Together we can achieve more.</p>
+</section>
+
+<!-- Add Whatsapp Button Code -->
+
+<!-- WhatsApp Chat Button -->
+<a href="https://wa.me/2349063774018" target="_blank" id="whatsapp-button">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat with us on WhatsApp" id="whatsapp-icon" />
+</a>
+
+<!-- WhatsApp Button Styling -->
+<style>
+    #whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+    }
+
+    #whatsapp-icon {
+        width: 60px;
+        height: 60px;
+    }
+</style>
+
+
+<!-- Updated Head Section  -->
+
+<head>
+    <title>GMA Technologies - Professional IT Solutions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="GMA Technologies offers professional IT solutions including CCTV, networking, VOIP, software development, and IT support services.">
+    <meta name="keywords" content="GMA Technologies, IT Solutions, Network Installation, CCTV, VOIP, Software Development, IT Support, Website Development">
+    <meta name="author" content="GMA Technologies">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="GMA Technologies - Professional IT Solutions">
+    <meta property="og:description" content="Professional IT solutions for businesses, including network installations, CCTV, software development, and more.">
+    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg"> <!-- Replace with actual image path -->
+    <meta property="og:url" content="https://yourdomain.com"> <!-- Replace with your site URL -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <noscript><link rel="stylesheet" href="./css/noscript.css" /></noscript>
+
+    <!-- Twitter Card for better previews on Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GMA Technologies - Professional IT Solutions">
+    <meta name="twitter:description" content="GMA Technologies offers IT solutions including networking, CCTV installations, VOIP, software development, and IT management services.">
+    <meta name="twitter:image" content="https://yourdomain.com/images/og-image.jpg">
+</head>
+
+
+<!-- Add Favicon -->
+
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+<!-- Social Media Meta tags (Open Graph) 
+For better sharing on social media  -->
+
+<meta property="og:title" content="GMA Technologies">
+<meta property="og:description" content="Professional IT solutions from network installations to software development.">
+<meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+<meta property="og:url" content="https://yourdomain.com">
+
+
+<!-- Add to the head  -->
+
+<meta name="description" content="GMA Technologies offers professional IT solutions including CCTV, networking, VOIP, software development, and IT support services.">
+
+
+<!-- Add the span and id inside the footer of the index.html  -->
+
+<li>&copy; GMA Technologies <span id="year"></span></li>
+
+
+<!-- Then, just before your closing </body> tag (or in your main.js), add: -->
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+<!-- 
+Update your server with the POST route
+Add this after your /generic route but before app.listen(): -->
+
+app.post("/send", function (req, res) {
+    const { name, email, message } = req.body;
+  
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  
+    const mailOptions = {
+      from: email,
+      to: process.env.EMAIL_USER, // or your preferred receiving email
+      subject: `New message from ${name} via website`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
+    };
+  
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        res.send("There was an error sending your message. Please try again.");
+      } else {
+        console.log("Email sent: " + info.response);
+        res.send("Message sent successfully! Thank you for contacting us.");
+      }
+    });
+  });
+
+<!--   
+  Update the HTML Form
+In your index.html, change this: -->
+
+<form method="post" action="/send">
+
+
+<!-- Also, change the submit link to a real button:    -->
+
+<li><button type="submit" class="button submit">Send Message</button></li>
+
+
+<!-- Thank you page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You - GMA Technologies</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <style>
+    .thank-you-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .thank-you-box {
+      background-color: #f5f5f5;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .thank-you-box h1 {
+      color: #00b894;
+      font-size: 2.5rem;
+    }
+
+    .thank-you-box p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #555;
+    }
+
+    .thank-you-box a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #00b894;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .thank-you-box a:hover {
+      background-color: #019875;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="thank-you-wrapper">
+    <div class="thank-you-box">
+      <h1>Thank You!</h1>
+      <p>Your message has been received. We will get back to you as soon as possible.</p>
+      <a href="/home">Back to Homepage</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+yyyyyy
+
+<form method="post" action="/contact">
+
+
+
+    <!-- Update Your server.js with the /contact Route
+    Add this route in your Express server (below your app.get routes):
+         -->
+ 
+ app.post("/contact", (req, res) => {
+    const { name, email, message } = req.body;
+  
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // or use your preferred email service
+      auth: {
+        user: process.env.EMAIL,       // e.g. rudolpbull@gmail.com
+        pass: process.env.EMAIL_PASS   // use an App Password if Gmail
+      }
+    });
+  
+    const mailOptions = {
+      from: email,
+      to: process.env.EMAIL,
+      subject: `New message from ${name}`,
+      text: `
+        Name: ${name}
+        Email: ${email}
+        Message: ${message}
+      `
+    };
+  
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.send("There was an error sending your message. Please try again.");
+      } else {
+        console.log("Email sent: " + info.response);
+        res.redirect("/thankyou.html"); // 👈 Redirect after successful send
+      }
+    });
+  });
+  

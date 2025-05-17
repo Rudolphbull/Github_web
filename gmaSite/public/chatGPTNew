@@ -1,0 +1,865 @@
+Skip to content
+You said:
+how best can i write this js script to ensure it avoids hacking via injection
+ChatGPT said:
+
+Great question. JavaScript security — especially preventing injection vulnerabilities — is crucial when writing scripts. To give you a precise answer, I’d need to see the JavaScript code you're referring to. However, here are general best practices to avoid injection attacks in JavaScript, especially for client-side scripts:
+✅ General Best Practices to Avoid Injection Attacks
+1. Avoid eval() and Similar Functions
+
+Do not use eval(), Function(), setTimeout(string), or setInterval(string):
+
+// ❌ Avoid this
+eval(userInput); // Dangerous!
+
+// ✅ Use functions directly
+setTimeout(myFunction, 1000);
+
+2. Escape or Sanitize User Input
+
+If you're inserting user input into the DOM or HTML:
+
+    Use textContent instead of innerHTML:
+
+// ❌ Vulnerable to XSS
+element.innerHTML = userInput;
+
+// ✅ Safe
+element.textContent = userInput;
+
+If you're working on server-side JS (e.g., Node.js), use trusted libraries like:
+
+    validator.js for input validation
+
+    ORM tools like Sequelize or Prisma that handle SQL escaping
+
+3. Use Trusted Libraries for Templating
+
+Use safe templating engines (e.g., Handlebars, EJS, Pug) that escape content by default.
+4. Avoid Directly Building HTML or Queries with User Input
+
+Use DOM methods or parameterized queries instead of string concatenation.
+5. Content Security Policy (CSP)
+
+Implement a strict CSP header to block inline scripts or unauthorized sources:
+
+Content-Security-Policy: default-src 'self'; script-src 'self'
+
+6. Validate and Sanitize Input at Every Entry Point
+
+    Use regular expressions or built-in validation libraries.
+
+    Don’t trust client-side validation alone — always validate on the server too.
+
+If you paste the specific JavaScript you're working on, I can point out potential vulnerabilities and help you fix them securely. Want to share your code?
+You said:
+
+
+(function($) {
+
+	var	$window = $(window),
+		$body = $('body'),
+		$sidebar = $('#sidebar');
+
+	// Breakpoints.
+		breakpoints({
+			xlarge:   [ '1281px',  '1680px' ],
+			large:    [ '981px',   '1280px' ],
+			medium:   [ '737px',   '980px'  ],
+			small:    [ '481px',   '736px'  ],
+			xsmall:   [ null,      '480px'  ]
+		});
+
+	// Hack: Enable IE flexbox workarounds.
+		if (browser.name == 'ie')
+			$body.addClass('is-ie');
+
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
+
+	// Forms.
+
+		// Hack: Activate non-input submits.
+			$('form').on('click', '.submit', function(event) {
+
+				// Stop propagation, default.
+					event.stopPropagation();
+					event.preventDefault();
+
+				// Submit form.
+					$(this).parents('form').submit();
+
+			});
+
+	// Sidebar.
+		if ($sidebar.length > 0) {
+
+			var $sidebar_a = $sidebar.find('a');
+
+			$sidebar_a
+				.addClass('scrolly')
+				.on('click', function() {
+
+					var $this = $(this);
+
+					// External link? Bail.
+						if ($this.attr('href').charAt(0) != '#')
+							return;
+
+					// Deactivate all links.
+						$sidebar_a.removeClass('active');
+
+					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
+						$this
+							.addClass('active')
+							.addClass('active-locked');
+
+				})
+				.each(function() {
+
+					var	$this = $(this),
+						id = $this.attr('href'),
+						$section = $(id);
+
+					// No section for this link? Bail.
+						if ($section.length < 1)
+							return;
+
+					// Scrollex.
+						$section.scrollex({
+							mode: 'middle',
+							top: '-20vh',
+							bottom: '-20vh',
+							initialize: function() {
+
+								// Deactivate section.
+									$section.addClass('inactive');
+
+							},
+							enter: function() {
+
+								// Activate section.
+									$section.removeClass('inactive');
+
+								// No locked links? Deactivate all links and activate this section's one.
+									if ($sidebar_a.filter('.active-locked').length == 0) {
+
+										$sidebar_a.removeClass('active');
+										$this.addClass('active');
+
+									}
+
+								// Otherwise, if this section's link is the one that's locked, unlock it.
+									else if ($this.hasClass('active-locked'))
+										$this.removeClass('active-locked');
+
+							}
+						});
+
+				});
+
+		}
+
+	// Scrolly.
+		$('.scrolly').scrolly({
+			speed: 1000,
+			offset: function() {
+
+				// If <=large, >small, and sidebar is present, use its height as the offset.
+					if (breakpoints.active('<=large')
+					&&	!breakpoints.active('<=small')
+					&&	$sidebar.length > 0)
+						return $sidebar.height();
+
+				return 0;
+
+			}
+		});
+
+	// Spotlights.
+		$('.spotlights > section')
+			.scrollex({
+				mode: 'middle',
+				top: '-10vh',
+				bottom: '-10vh',
+				initialize: function() {
+
+					// Deactivate section.
+						$(this).addClass('inactive');
+
+				},
+				enter: function() {
+
+					// Activate section.
+						$(this).removeClass('inactive');
+
+				}
+			})
+			.each(function() {
+
+				var	$this = $(this),
+					$image = $this.find('.image'),
+					$img = $image.find('img'),
+					x;
+
+				// Assign image.
+					$image.css('background-image', 'url(' + $img.attr('src') + ')');
+
+				// Set background position.
+					if (x = $img.data('position'))
+						$image.css('background-position', x);
+
+				// Hide <img>.
+					$img.hide();
+
+			});
+
+	// Features.
+		$('.features')
+			.scrollex({
+				mode: 'middle',
+				top: '-20vh',
+				bottom: '-20vh',
+				initialize: function() {
+
+					// Deactivate section.
+						$(this).addClass('inactive');
+
+				},
+				enter: function() {
+
+					// Activate section.
+						$(this).removeClass('inactive');
+
+				}
+			});
+
+})(jQuery);
+
+document.getElementById('year').innerHTML = new Date().getFullYear();
+ChatGPT said:
+
+Thanks for sharing your code. Overall, your script looks well-structured and relatively safe since it's primarily used for layout, scrolling behavior, and UI interactions. However, there are still a few improvements you can make to strengthen security and maintainability, especially to avoid injection vulnerabilities or unsafe DOM manipulations.
+🔍 Key Security Review and Recommendations
+✅ 1. Avoid InnerHTML for Dynamic Content
+
+Your script sets the year via:
+
+document.getElementById('year').innerHTML = new Date().getFullYear();
+
+While this is low-risk because the content is a static number you generate, it's still best to use textContent to avoid any possibility of script injection if the input source ever changes.
+
+✅ Change this line to:
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+⚠️ 2. Validate Anchor href Attributes Before Using Them
+
+This part:
+
+id = $this.attr('href'),
+$section = $(id);
+
+Could be dangerous if a malicious href were injected. For instance, if someone injected an href="javascript:alert('hacked')" or an invalid ID, it could break functionality or pose security risks if additional behaviors are added later.
+
+✅ Add a basic validation check before using it:
+
+if (!/^#[a-zA-Z0-9\-_]+$/.test(id))
+    return;
+
+This ensures id is a safe CSS ID selector (alphanumeric, dashes, underscores).
+⚠️ 3. Use Strict Equality
+
+Avoid using ==, especially with JavaScript's quirky type coercion:
+
+if (browser.name == 'ie') // ❌
+
+✅ Use strict equality (===) instead:
+
+if (browser.name === 'ie') // ✅
+
+This prevents unintended matches (like '0' == 0 being true).
+✅ 4. Avoid Inline Script Tags in Your HTML (CSP)
+
+Your current code structure is fine, but to enhance protection against XSS, you should:
+
+    Move all inline scripts to external files
+
+    Use a Content Security Policy (CSP) header in your HTML/HTTP response
+
+For example:
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none';">
+
+✅ 5. Input Handling (Forms)
+
+You're using:
+
+$(this).parents('form').submit();
+
+This is fine assuming:
+
+    There’s no dynamic injection of .submit elements via user input.
+
+    Forms are either static or securely built.
+
+If there's any user-generated content that could be placed in the DOM (e.g. injected through a CMS or WYSIWYG editor), you'd need to sanitize it.
+✅ Summary of Changes to Make
+Area	What to Change	Why
+innerHTML	Replace with textContent	Avoid DOM-based XSS
+href usage	Validate with RegEx	Prevent injection via malformed anchors
+== vs ===	Use strict equality	Avoid type coercion bugs
+CSP	Add meta tag or HTTP header	Block inline/injected scripts
+
+Would you like me to provide a cleaned-up and fully revised version of your code with these fixes applied?
+You said:
+yes please
+ChatGPT said:
+
+Here's your revised and hardened JavaScript code, with security and best practice improvements applied:
+✅ Updated JavaScript (with inline comments for clarity)
+
+(function($) {
+
+	var $window = $(window),
+		$body = $('body'),
+		$sidebar = $('#sidebar');
+
+	// Breakpoints.
+	breakpoints({
+		xlarge: [ '1281px', '1680px' ],
+		large: [ '981px', '1280px' ],
+		medium: [ '737px', '980px' ],
+		small: [ '481px', '736px' ],
+		xsmall: [ null, '480px' ]
+	});
+
+	// Hack: Enable IE flexbox workarounds.
+	if (browser.name === 'ie')
+		$body.addClass('is-ie');
+
+	// Play initial animations on page load.
+	$window.on('load', function() {
+		window.setTimeout(function() {
+			$body.removeClass('is-preload');
+		}, 100);
+	});
+
+	// Forms.
+	// Hack: Activate non-input submits.
+	$('form').on('click', '.submit', function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		$(this).closest('form').submit();
+	});
+
+	// Sidebar.
+	if ($sidebar.length > 0) {
+
+		var $sidebar_a = $sidebar.find('a');
+
+		$sidebar_a
+			.addClass('scrolly')
+			.on('click', function() {
+
+				var $this = $(this),
+					href = $this.attr('href');
+
+				// Validate href to avoid malformed ID or script injection.
+				if (!href || href.charAt(0) !== '#' || !/^#[a-zA-Z0-9\-_]+$/.test(href))
+					return;
+
+				// Deactivate all links.
+				$sidebar_a.removeClass('active');
+
+				// Activate link and lock it.
+				$this
+					.addClass('active')
+					.addClass('active-locked');
+			})
+			.each(function() {
+
+				var $this = $(this),
+					id = $this.attr('href');
+
+				// Validate href.
+				if (!id || id.charAt(0) !== '#' || !/^#[a-zA-Z0-9\-_]+$/.test(id))
+					return;
+
+				var $section = $(id);
+
+				if ($section.length < 1)
+					return;
+
+				// Scrollex.
+				$section.scrollex({
+					mode: 'middle',
+					top: '-20vh',
+					bottom: '-20vh',
+					initialize: function() {
+						$section.addClass('inactive');
+					},
+					enter: function() {
+						$section.removeClass('inactive');
+
+						if ($sidebar_a.filter('.active-locked').length === 0) {
+							$sidebar_a.removeClass('active');
+							$this.addClass('active');
+						} else if ($this.hasClass('active-locked')) {
+							$this.removeClass('active-locked');
+						}
+					}
+				});
+			});
+	}
+
+	// Scrolly.
+	$('.scrolly').scrolly({
+		speed: 1000,
+		offset: function() {
+			if (breakpoints.active('<=large') && !breakpoints.active('<=small') && $sidebar.length > 0)
+				return $sidebar.height();
+
+			return 0;
+		}
+	});
+
+	// Spotlights.
+	$('.spotlights > section')
+		.scrollex({
+			mode: 'middle',
+			top: '-10vh',
+			bottom: '-10vh',
+			initialize: function() {
+				$(this).addClass('inactive');
+			},
+			enter: function() {
+				$(this).removeClass('inactive');
+			}
+		})
+		.each(function() {
+			var $this = $(this),
+				$image = $this.find('.image'),
+				$img = $image.find('img'),
+				x;
+
+			// Assign background image safely from src.
+			var src = $img.attr('src');
+			if (src)
+				$image.css('background-image', 'url(' + encodeURI(src) + ')');
+
+			// Set background position.
+			if (x = $img.data('position'))
+				$image.css('background-position', x);
+
+			// Hide <img>.
+			$img.hide();
+		});
+
+	// Features.
+	$('.features')
+		.scrollex({
+			mode: 'middle',
+			top: '-20vh',
+			bottom: '-20vh',
+			initialize: function() {
+				$(this).addClass('inactive');
+			},
+			enter: function() {
+				$(this).removeClass('inactive');
+			}
+		});
+
+})(jQuery);
+
+// Set copyright year.
+const yearElement = document.getElementById('year');
+if (yearElement) {
+	yearElement.textContent = new Date().getFullYear(); // use textContent instead of innerHTML
+}
+
+🔒 Security Improvements Summary:
+
+    ✅ textContent replaces innerHTML
+
+    ✅ Validated href values to prevent XSS via anchor injection
+
+    ✅ Used strict equality (===) instead of ==
+
+    ✅ Encoded image URLs using encodeURI()
+
+    ✅ Replaced parents() with closest() for better accuracy
+
+Let me know if you'd like help setting up a Content Security Policy (CSP) or reviewing your HTML and CSS for complementary hardening.
+You said:
+i am wondering if the above js scripts adjustment will still work with my html and css scripts accordingly?
+ChatGPT said:
+
+Great question — and yes, your updated JavaScript should still work seamlessly with your existing HTML and CSS, assuming they were functioning properly before.
+
+Here’s why:
+✅ What Changed — and Why It’s Safe
+Change Made	Why It’s Safe
+innerHTML → textContent	Only affects how the year is inserted — no layout or styling impact.
+== → ===	Safer comparison, but behaviorally identical if your browser.name is correct.
+Anchor href validation	Only skips invalid/malicious hrefs — if your anchors are well-formed (#section-id), they’ll work as before.
+parents('form') → closest('form')	More accurate selection. If .submit is inside a <form>, this behaves the same.
+encodeURI(src)	Still sets background image, just protects against malformed src. No visual change.
+⚠️ Things to Double-Check
+
+    Anchor IDs in HTML
+    Make sure your <a href="#some-section"> links match actual id="some-section" sections. The script now checks if href starts with # and is a valid CSS ID.
+
+    Form Submit Buttons
+    If you're using .submit class buttons outside of <form>, the .closest('form') might not find the form. You can tweak this back to .parents('form') if needed, but generally closest() is more precise.
+
+    Images in Spotlights
+    The updated script now encodes the image src for safety:
+
+    'url(' + encodeURI(src) + ')'
+
+    This only affects background-image paths. If your src attributes are plain URLs, this is fully compatible.
+
+✅ Quick Test Plan
+
+To be confident everything still works:
+
+    Check Sidebar Links: Do they still scroll to the correct sections?
+
+    Look at the Spotlights/Features: Are images and animations appearing as expected?
+
+    Submit Forms: Do they still behave as before?
+
+    Verify Year: Does the footer show the current year?
+
+Would you like me to look over your HTML or CSS to confirm compatibility explicitly?
+You said:
+let me do my investigation, digest all you have said and revert please
+ChatGPT said:
+
+Absolutely, take your time to review and test everything — it's a smart approach. When you're ready or if any questions pop up along the way, just reach out. Happy debugging and refining!
+You said:
+i have checked and about few elements are not displaying
+ChatGPT said:
+
+Thanks for checking — let’s sort that out. If a few elements aren’t displaying after the JS update, it’s likely due to one of these:
+🔍 Common Causes (Based on the Changes)
+
+    Anchor Links Not Activating
+
+        We added this validation:
+
+    if (!/^#[a-zA-Z0-9\-_]+$/.test(id)) return;
+
+    ❗If your href values contain characters like /, ., or spaces (e.g., #section.one or #section one), they’ll now be skipped.
+
+✅ Fix: Update the regex to allow those if needed:
+
+if (!/^#[\w\-\.]+$/.test(id)) return;
+
+(This adds support for dots.)
+
+Image Not Showing in Spotlights
+
+    We added encodeURI() to sanitize image paths:
+
+    'url(' + encodeURI(src) + ')'
+
+    If your src already includes encoded characters (e.g., %20), encodeURI() could double-encode it, breaking the path.
+
+✅ Fix: Use this instead (safer for most cases):
+
+    $image.css('background-image', 'url("' + src + '")');
+
+    Sections Still Hidden (class inactive not removed)
+
+        This may happen if:
+
+            The IDs aren’t matching due to regex filtering.
+
+            scrollex isn’t triggering because of page height/layout.
+
+    ✅ Fix:
+
+        Temporarily remove the inactive class in HTML and confirm if the section appears.
+
+        Ensure the scrollex plugin is loaded and initialized correctly.
+
+    JS Errors Blocking Other Scripts
+
+        A single silent error (e.g., undefined src) can block the rest.
+
+    ✅ Fix: Check browser console for red errors and share the stack trace or line numbers here.
+
+✅ What You Can Do Next
+
+    Open your browser's Developer Tools > Console.
+
+    Refresh the page and look for any errors or warnings.
+
+    Also look in the Elements tab to see if the hidden elements still have the inactive class.
+
+If you'd like, paste:
+
+    The specific HTML section that’s failing
+
+    Any console errors you see
+
+I’ll pinpoint the issue for you. Want to go that route?
+You said:
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>GMA Technologies</h1>
+							<p>Welcome to GMA Technologies where we provide IT Services and solutions professionally at it's best.<br />
+							 Our team is experienced packed and you are certain of getting value for the services you seek.
+						 	<br />As we look forward to your first project / purchase with us. <br />Thank You.</p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="images/network-testing2.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Network Installations LAN/WAN</h2>
+									<p>The importance of network installations, whether Local Area Network (LAN) or Wide Area Network (WAN), <br />
+										is significant in both small and large-scale environments. As it can help in Efficient Communication, Centralized Data Management, Resource Sharing,
+										Scalability and Flexibility, Cost Efficiency, Enhanced Security, Improved Productivity, Internet and Intranet.</p>
+									<ul class="actions">
+										<li><a href="/generic" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/cctv3.jpg" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>CCTV Installations</h2>
+									<p>Vital reasons why you will want to have CCTV Installations is for Crime Deterrence, Real-Time Surveillance, Evidence Collection, Enhanced Safety, Remote Monitoring, <br />Workplace Productivity and Monitoring,<br />
+										Cost-Effective Security, Helps in Dispute Resolution, 24/7 Surveillance, and Insurance Benefits.</p>
+									<ul class="actions">
+										<li><a href="/generic" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+ChatGPT said:
+
+Thanks for sharing that snippet — the structure looks solid and typical for a fullscreen scrolling site. Based on this and your earlier JS, here's what likely broke and how to fix it:
+🚨 Key Issue: Nested <section> Tags
+
+You have this:
+
+<section id="one" class="wrapper style2 spotlights">
+    <section> ... </section>
+    <section> ... </section>
+</section>
+
+But nesting <section> inside another <section> is invalid HTML. Most browsers will "flatten" or misinterpret it — which can break styles, JavaScript behavior (like scrollex), or cause content not to render as expected.
+✅ Solution:
+
+Change the nested <section> tags inside #one to <div> (or <article>, if semantically fitting):
+
+<section id="one" class="wrapper style2 spotlights">
+    <div class="spotlight">
+        <a href="#" class="image"><img src="images/network-testing2.jpg" alt="" data-position="center center" /></a>
+        <div class="content">
+            <div class="inner">
+                <h2>Network Installations LAN/WAN</h2>
+                <p>...</p>
+                <ul class="actions">
+                    <li><a href="/generic" class="button">Learn more</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="spotlight">
+        <a href="#" class="image"><img src="images/cctv3.jpg" alt="" data-position="top center" /></a>
+        <div class="content">
+            <div class="inner">
+                <h2>CCTV Installations</h2>
+                <p>...</p>
+                <ul class="actions">
+                    <li><a href="/generic" class="button">Learn more</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+And in your CSS/JS:
+
+    If you're targeting .spotlights > section, update it to .spotlights > div (or .spotlights > .spotlight if you use that class).
+
+✅ JavaScript Fix for .scrollex
+
+If you update the HTML to use <div class="spotlight">, also change this in your JS:
+
+$('.spotlights > section')
+
+to:
+
+$('.spotlights > .spotlight')
+
+✅ Double Check: Image Background
+
+The image assignment JS:
+
+$image.css('background-image', 'url(' + encodeURI(src) + ')');
+
+Make sure your src doesn't have special characters like spaces or # — or just use:
+
+$image.css('background-image', 'url("' + src + '")');
+
+🔍 To Confirm It’s Fixed:
+
+    Check your browser’s Inspector > Elements tab — do the .spotlight sections now appear visibly?
+
+    Watch for any red errors in the Console.
+
+    If scrollex still doesn’t trigger, verify its script is being included in your page before your main JS.
+
+Would you like help reviewing your scrollex setup or CSS to align with these structural changes?
+You said:
+let me share it with you
+ChatGPT said:
+
+Perfect — go ahead and share the relevant HTML, CSS, or JavaScript (or all of them), and I’ll review everything to ensure your layout and scroll-based behavior work smoothly. Once I see the code, I’ll identify what’s breaking and how to fix it cleanly.
+You said:
+
+
+/* Spotlights */
+
+	.spotlights > section > .image:before {
+		opacity: 0 !important;
+	}
+
+	.spotlights > section > .content > .inner {
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-ms-transform: none !important;
+		transform: none !important;
+		opacity: 1 !important;
+	}
+
+/* Wrapper */
+
+	.wrapper > .inner {
+		opacity: 1 !important;
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-ms-transform: none !important;
+		transform: none !important;
+	}
+
+/* Sidebar */
+
+	#sidebar > .inner {
+		opacity: 1 !important;
+	}
+
+	#sidebar nav > ul > li {
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-ms-transform: none !important;
+		transform: none !important;
+		opacity: 1 !important;
+	}
+ChatGPT said:
+
+Thanks for sharing the CSS. This confirms you’re using a template or theme that relies on JavaScript-triggered animations, particularly fading/transform effects tied to classes like .inactive.
+
+Let’s align everything:
+🔍 Problem Recap
+
+You originally had:
+
+<section id="one" class="wrapper style2 spotlights">
+    <section>...</section>
+</section>
+
+But since nesting <section> inside another <section> is invalid, you were advised to use <div>s instead:
+
+<div class="spotlight">...</div>
+
+⚠️ Current CSS Targeting Is Still Looking for <section>
+
+Your current CSS (example):
+
+.spotlights > section > .image:before { ... }
+.spotlights > section > .content > .inner { ... }
+
+But now your structure might be:
+
+<section id="one" class="spotlights">
+    <div class="spotlight">
+        <div class="image">...</div>
+        <div class="content">
+            <div class="inner">...</div>
+        </div>
+    </div>
+</section>
+
+✅ So, the CSS selectors must be updated to match the new structure.
+✅ Updated CSS
+
+Here’s how your CSS should now look:
+
+/* Spotlights */
+
+.spotlights > .spotlight > .image:before {
+	opacity: 0 !important;
+}
+
+.spotlights > .spotlight > .content > .inner {
+	-moz-transform: none !important;
+	-webkit-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+	opacity: 1 !important;
+}
+
+This makes sure your animations and layout behavior still apply correctly.
+✅ JS Update Reminder
+
+Also, be sure you’ve updated your JS to match:
+
+$('.spotlights > .spotlight')
+
+instead of:
+
+$('.spotlights > section')
+
+✅ Optional Cleanup (if desired)
+
+You could add a class like .spotlight in your CSS to avoid deeply nested selectors:
+
+.spotlight .image:before { ... }
+.spotlight .content .inner { ... }
+
+This is easier to maintain and scales better.
+
+Let me know if you want help adjusting the scrollex or checking if the animations are firing correctly!
+You said:
+let me digest and revert
+ChatGPT said:
+
+Absolutely — take your time to digest and test everything. Once you’ve reviewed it and checked the results, feel free to drop back in with any questions or updates. I’ll be here to help you fine-tune the rest!
+
+
+ChatGPT can make mistakes. Check important info.
