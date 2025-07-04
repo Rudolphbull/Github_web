@@ -27,9 +27,14 @@ app.get("/contact", (req, res)=>{
     res.render("contact", {title: "Contact Us - GMA Technologies Ltd"});
 });
 
-app.get("/blog", (req, res) => {
-  res.render("blog", { title: "Blog - Coming Soon" });
+// app.get("/blog", (req, res) => {
+//   res.render("blog", { title: "Blog - Coming Soon" });
+// });
+
+app.get('/legal', (req, res) => {
+  res.render('legal', { title: "Legal - GMATechnologiesLtd" });
 });
+
 
 
 // Update your server with the POST route
