@@ -497,6 +497,7 @@ footer .menu a {
   padding: 80px 20px;
   min-height: 80vh;
   background: #f5f5f5;
+  margin-top: 60px;
 }
 
 .success-card {
@@ -546,6 +547,7 @@ footer .menu a {
   padding: 80px 20px;
   min-height: 80vh;
   background: #fff3f3;
+  margin-top: 50px;
 }
 
 .failure-card {
@@ -663,7 +665,7 @@ footer .menu a {
   width: 100%;
   padding: 14px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 13px;
   font-family: inherit;
   resize: vertical;
@@ -1054,13 +1056,14 @@ footer .menu a {
         width: 300px;
     }
 
+    
 }
 
 @media(max-width: 320px) {
     #menu-icon {
         display: block;
         margin-right: 0.1px; /*push it inward from the right */
-        padding: 0.3rem; /* optional: add touch friendly padding */
+        padding: 0.3rem 1.5rem; /* optional: add touch friendly padding */
     }
 
     .navbar a {
@@ -1090,7 +1093,7 @@ footer .menu a {
    #intro-text {
     text-align: left;
     margin-left: 35px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .inner p {
@@ -1117,6 +1120,8 @@ footer .menu a {
     #text-enquiry {
         text-align: left;
         margin-left: 20px;
+        font-size: 12px;
+        padding: 0 20px;
     }
 
 
@@ -1168,32 +1173,28 @@ footer .menu a {
     }
 
 
-    .inner p {
-        font-size: 11px;
+    #intro-text-services h1 {
+        font-size: 20px;
+        padding: 24px 20%;
+        border: 1px solid #fff;
+        border-radius: 2px;
+        margin-bottom: 10px;
     }
 
-  #intro-text-services h1 {
-    font-size: 20px;
-    padding: 24px 20%;
-    border: 1px solid #fff;
-    border-radius: 2px;
-    margin-bottom: 10px;
-  }
-
-  .navbar {
-        position: absolute;
-        display: none;
-        top: 100%;
-        right: -50%;
-        width: 95px;
-        height: auto;
-        background: var(--accent-color);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 0.5rem;
-        border-radius: 8px;
-        transition: 0.3s ease;
-        z-index: 999;
+    .navbar {
+            position: absolute;
+            display: none;
+            top: 100%;
+            right: -50%;
+            width: 95px;
+            height: auto;
+            background: var(--accent-color);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1rem 0.5rem;
+            border-radius: 1px;
+            transition: 0.3s ease;
+            z-index: 999;
     }
 
 
@@ -1312,6 +1313,24 @@ footer .menu a {
         border-radius: 5px;
         transition: background 0.3s ease;
     }
+
+    .field.half label {
+        margin-left: 9px;
+    }
+
+    #text-address {
+        margin-left: 60px;
+    }
+
+    .failure-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        min-height: 80vh;
+        background: #fff3f3;
+        margin-top: 60px;
+    }
 }
 
 @media(min-width: 321px) and (max-width: 480px){
@@ -1354,7 +1373,7 @@ footer .menu a {
     }
 
     .inner p {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     #five h3 {
@@ -1424,14 +1443,14 @@ footer .menu a {
     #menu-icon {
         display: block;
         margin-right: 1rem; /*push it inward from the right */
-        padding: 0.3rem; /* optional: add touch friendly padding */
+        padding: 0.3rem 0.6rem;  /* optional: add touch friendly padding */
     }
 
     
     .navbar {
         position: absolute;
         display: none;
-        top: 100%;
+        top: 95px;
         right: -50%;
         width: 95px;
         height: auto;
@@ -1439,7 +1458,7 @@ footer .menu a {
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem 0.5rem;
-        border-radius: 8px;
+        border-radius: 1px;
         transition: 0.3s ease;
         z-index: 999;
     }
@@ -1489,7 +1508,7 @@ footer .menu a {
 
     #contact-subtitle {
         text-align: left;
-        margin-left: 150px;
+        margin-left: 80px;
     }
 
     .form-group label {
@@ -1504,7 +1523,7 @@ footer .menu a {
         width: 100%;
         padding: 9px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 5px;
         font-size: 11px;
         font-family: inherit;
         resize: vertical;
@@ -1604,6 +1623,26 @@ footer .menu a {
         transition: background-color 0.3s ease;
     }
 
+    .field.half label {
+        margin-left: 9px;
+    }
+
+    #text-enquiry {
+        text-align: left;
+        margin-left: 20px;
+        padding: 0 20px;
+    }
+
+    .failure-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        min-height: 80vh;
+        background: #fff3f3;
+        margin-top: 60px;
+    }
+
 }
 
 @media(min-width: 481px) and (max-width: 768px) {
@@ -1618,7 +1657,7 @@ footer .menu a {
     }
 
     .logo {
-        font-size: 35px;
+        font-size: 25px;
         display: flex;
         align-items: center;
         font-weight: 600;
@@ -1627,9 +1666,8 @@ footer .menu a {
 
     .navbar {
         position: absolute;
-        top: 100%;
-        right: -50%;
-        width: 160px;
+        top: 100px;
+        width: 140px;
         height: auto;
         background: var(--accent-color);
         flex-direction: column;
@@ -1638,18 +1676,25 @@ footer .menu a {
         border-radius: 8px;
         transition: 0.3s ease;
         z-index: 999;
-        font-size: 50px;
-        line-height: 5px;
+        font-size: 10px;
+        line-height: 10px;
     }
 
     .navbar a {
-        font-size: 1.2rem;
+        font-size: 15px;
         color: var(--text-color);
         text-align: left;
-	      font-weight: 500;
+	    font-weight: 500;
         margin: 0 1rem;
         transition: 0.3s ease;
         position: relative;
+    }
+
+    .navbar li {
+        margin: 0.4rem 0;
+        text-align: left;
+        width: 98px;
+        line-height: 22px;
     }
 
     #five h3 {
@@ -1658,19 +1703,19 @@ footer .menu a {
     }
 
     #text-address {
-        margin-left: 150px;
-        font-size: 18px;
+        margin-left: 180px;
+        font-size: 15px;
         text-align: left;
     }
 
     #footer .menu li {
         color: #fff;
-        font-size: 18px;
+        font-size: 12px;
     }
 
     .inner h1 {
-        font-size: 30px;
-	      color: var(--main-color);
+        font-size: 20px;
+	    color: var(--main-color);
     }
 
     .intro-heading {
@@ -1679,7 +1724,7 @@ footer .menu a {
     }
 
     .inner p {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #intro-text {
@@ -1699,7 +1744,7 @@ footer .menu a {
         background: var(--main-color);
         color: #000;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 15px;
         border-radius: 5px;
         transition: background 0.3s ease;
     }
@@ -1717,6 +1762,7 @@ footer .menu a {
     .row section h2 {
         color: var(--main-color);
         margin-bottom: 1rem;
+        font-size: 20px;
     }
 
     label {
@@ -1727,13 +1773,13 @@ footer .menu a {
     }
 
     input, textarea {
-        width: 100%;
+        /* width: 100%; */
         padding: 0.7rem;
         border: none;
         border-radius: 5px;
         background: #1f1f1f;
         color: var(--text-color);
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .field {
@@ -1744,11 +1790,11 @@ footer .menu a {
 
     .actions .submit {
         display: inline-block;
-        padding: 0.8rem 2rem;
+        padding: 0.8rem 1.5rem;
         background: var(--main-color);
         color: #000;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 15px;
         border-radius: 5px;
         transition: background 0.3s ease;
     }
@@ -1758,7 +1804,7 @@ footer .menu a {
     }
 
     .split section h2 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .split h2 {
@@ -1767,22 +1813,22 @@ footer .menu a {
 
 
     .split section ul {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     #our-team h2 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .container .contact-title {
         margin-top: 50px;
-        font-size: 25px;
+        font-size: 20px;
     }
 
     #contact-subtitle {
         text-align: left;
-        margin-left: 280px;
-        font-size: 20px;
+        margin-left: 140px;
+        font-size: 15px;
     }
 
     .contact-subtitle {
@@ -1795,15 +1841,15 @@ footer .menu a {
         margin-bottom: 8px;
         color: #333;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .form-group input, .form-group textarea {
         width: 100%;
         padding: 20px;
         border: 1px solid #ccc;
-        border-radius: 10px;
-        font-size: 20px;
+        border-radius: 5px;
+        font-size: 13px;
         font-family: inherit;
         resize: vertical;
     }
@@ -1813,9 +1859,9 @@ footer .menu a {
         color: #000;
         padding: 12px 20px;
         border: none;
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 13px;
         transition: background-color 0.3s ease;
     }
 
@@ -1848,22 +1894,63 @@ footer .menu a {
         text-decoration: none;
         font-weight: 500;
         transition: background-color 0.3s ease;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .legal-container h2 {
         color: var(--main-color);
         margin-top: 40px;
         margin-bottom: 10px;
-        font-size: 25px;
+        font-size: 20px;
+    }
+
+    .legal-container h3 {
+        font-size: 20px;
     }
 
     .legal-container p, .legal-container li {
-        font-size: 20px;
+        font-size: 13px;
         margin-bottom: 15px;
     }
 
+    
+    #text-enquiry {
+        text-align: left;
+        margin-left: 80px;
+        padding: 0 50px;
+    }
 
+    .field.half label {
+        margin-left: 9px;
+    }
+
+    .failure-card {
+        background-color: #fff;
+        border: 2px solid #ff4d4f;
+        border-radius: 16px;
+        padding: 30px;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(255, 77, 79, 0.2);
+    }
+
+    .failure-title {
+        color: #ff4d4f;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .btn-home {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--main-color);
+        color: #333;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
 }
 
 .bx-menu::before {
