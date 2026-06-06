@@ -23,7 +23,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
             <div class="container">
                 
-                <a class="navbar-brand" href="#"><img src="./images/christensen_heights_logo (1).jfif" alt="christensen_heights_logo" width="70" height="70"></a>
+                <a class="navbar-brand" href="#">
+                    <img src="./images/christensen_heights_logo (1).jfif" alt="christensen_heights_logo" width="70" height="70">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,7 +43,7 @@
                                     About
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Company</a></li>
+                                    <li><a class="dropdown-item" href="about.html">Company</a></li>
                                     <li><a class="dropdown-item" href="#">Team</a></li>
                                     <li><a class="dropdown-item" href="#">Careers</a></li>
                                 </ul>
@@ -52,11 +54,11 @@
                                     Solutions
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Recruitment</a></li>
-                                    <li><a class="dropdown-item" href="#">HR Advisory</a></li>
-                                    <li><a class="dropdown-item" href="#">Payroll Services</a></li>
-                                    <li><a class="dropdown-item" href="#">Training & Development</a></li>
-                                    <li><a class="dropdown-item" href="#">HR Technology</a></li>
+                                    <li><a class="dropdown-item" href="#recruitment">Recruitment</a></li>
+                                    <li><a class="dropdown-item" href="#recruitment">HR Advisory</a></li>
+                                    <li><a class="dropdown-item" href="#recruitment">Payroll Services</a></li>
+                                    <li><a class="dropdown-item" href="#recruitment">Training & Development</a></li>
+                                    <li><a class="dropdown-item" href="#recruitment">HR Technology</a></li>
                                 </ul>
                             </li>
 
@@ -65,10 +67,10 @@
                                     Who We Serve
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Startups</a></li>
-                                    <li><a class="dropdown-item" href="#">SMEs</a></li>
+                                    <li><a class="dropdown-item" href="#startups">Startups</a></li>
+                                    <li><a class="dropdown-item" href="#startups">SMEs</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Enterprises</a></li>
+                                    <li><a class="dropdown-item" href="#startups">Enterprises</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -83,12 +85,14 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                                <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
                             </li>
                             
                         </ul>
 
-                        <button class="btn btn-outline-success" type="submit">Book Consultation</button>
+                        <button class="btn btn-outline-success" type="submit">
+                            <a href="contact.html" class="nav-link">Book Consultation</a>
+                        </button>
                 
                 </div>
             </div>
@@ -142,18 +146,18 @@
                             </p>
 
                             <div class="mt-4">
-                                <a href="#" class="btn btn-light btn-lg me-2">
+                                <a href="contact.html" class="btn btn-light btn-lg me-2">
                                     Book Consultation
                                 </a>
 
-                                <a href="#" class="btn btn-outline-light btn-lg">
+                                <a href="services.html" class="btn btn-outline-light btn-lg">
                                     Learn More
                                 </a>
                             </div>
                         </div>
 
                         <div class="col-lg-6 text-center">
-                            <img src="./images/hr-team-meeting.jpg" class="img-fluid hero-img" alt="">
+                            <img src="./images/hr-team-meeting.jpg" class="img-fluid hero-img" alt="hr team in a meeting">
                         </div>
 
                     </div>
@@ -161,7 +165,7 @@
         </section>
         
 
-        <section class="py-5">
+        <section id="recruitment" class="py-5">
             <div class="container">
 
                 <div class="text-center mb-5">
@@ -178,7 +182,7 @@
                                     width="70"
                                     class="mb-3"
                                 >
-                                <h5 class="fw-bold">Recruitment</h5>
+                                <h5 class="fw-bold" one>Recruitment</h5>
                                 <p class="text-muted">
                                     We help you find the right talent faster and smarter.
                                 </p>
@@ -209,6 +213,36 @@
                                     class="mb-3"
                                 >
                                 <h5 class="fw-bold">HR Advisory</h5>
+                                <p class="text-muted">
+                                    Expert HR guidance for business growth and compliance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <img src="./images/graduation-cap.jfif"
+                                    width="70"
+                                    class="mb-3"
+                                >
+                                <h5 class="fw-bold">Training & Development</h5>
+                                <p class="text-muted">
+                                    Expert HR guidance for business growth and compliance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <img src="./images/laptop-AI-icon.jfif"
+                                    width="70"
+                                    class="mb-3"
+                                >
+                                <h5 class="fw-bold">HR Technology</h5>
                                 <p class="text-muted">
                                     Expert HR guidance for business growth and compliance.
                                 </p>
@@ -263,7 +297,7 @@
         </section>
 
 
-        <section class="who-we-serve bg-light">
+        <section id="startups" class="who-we-serve bg-light">
             <div class="container">
 
                 <div class="text-center mb-5">
@@ -383,10 +417,10 @@
 
                         <div class="col-md-4 mb-4">
                             <h5 class="fw-bold">Quick Links</h5>
-                            <p>About</p>
-                            <p>Solutions</p>
-                            <p>Who We Serve</p>
-                            <p>Contact</p>
+                            <p><a class="nav-link" href="about.html">About</a></p>
+                            <p><a class="nav-link" href="services.html">Solutions</a></p>
+                            <p><a class="nav-link" href="#startups">Who We Serve</a></p>
+                            <p><a class="nav-link" href="contact.html">Contact</a></p>
                         </div>
 
                         <div class="col-md-4 mb-4">
@@ -405,6 +439,13 @@
 
                 </div>
         </footer>
+
+        <a href="https://wa.me/234XXXXXXXXXX"
+            class="whatsapp-float"
+            target="_blank">
+
+            💬
+        </a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
